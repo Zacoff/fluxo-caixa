@@ -6,7 +6,7 @@ interface IDeleteRevenue {
   value: number;
 }
 
-class DeleteRevenue {
+class DeleteRevenueService {
   static async execute({description, value} : IDeleteRevenue){
     const revenueRepository = getCustomRepository(RevenuesRepositories);
 
@@ -22,4 +22,4 @@ class DeleteRevenue {
   }
 }
 
-export { DeleteRevenue }
+export { DeleteRevenueService }

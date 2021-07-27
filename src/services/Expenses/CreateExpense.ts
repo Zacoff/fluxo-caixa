@@ -7,7 +7,7 @@ interface IExpense {
   createdAt: string;
 }
 
-class CreateExpense {
+class CreateExpenseService {
   static async execute({description , value , createdAt} : IExpense){
     const expensesRepository = getCustomRepository(ExpensesRepositories);
 
@@ -19,4 +19,4 @@ class CreateExpense {
   } 
 }
 
-export { CreateExpense }
+export { CreateExpenseService }

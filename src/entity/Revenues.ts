@@ -19,4 +19,5 @@ export class Revenues {
 
   @Column({ length: 8 })
   createdAt!: string;
+  
 }

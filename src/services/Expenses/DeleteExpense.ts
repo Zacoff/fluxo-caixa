@@ -7,7 +7,7 @@ interface IDeleteExpense {
   value: number;
 }
 
-class DeleteExpense {
+class DeleteExpenseService {
   static async execute({id , description, value} : IDeleteExpense){
     const expenseRepository = getCustomRepository(ExpensesRepositories);
 
@@ -23,4 +23,4 @@ class DeleteExpense {
   }
 }
 
-export { DeleteExpense }
+export { DeleteExpenseService }

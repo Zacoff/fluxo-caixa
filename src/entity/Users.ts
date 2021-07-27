@@ -1,9 +1,9 @@
-import {Entity, PrimaryGeneratedColumn, Column, CreateDateColumn} from "typeorm";
+import {Entity, PrimaryColumn, Column, CreateDateColumn} from "typeorm";
 import { v4 as uuidv4 } from 'uuid';
 
 @Entity('users')
 export class Users {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     readonly id!: string;
 
     @Column({ length: 225 })
@@ -12,7 +12,7 @@ export class Users {
     @Column()
     email!: string;
 
-    @Column({ length: 8 })
+    @Column()
     password!: string;
 
     @CreateDateColumn()

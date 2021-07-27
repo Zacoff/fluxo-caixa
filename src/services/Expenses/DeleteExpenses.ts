@@ -1,7 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import { ExpensesRepositories } from '../../repository/Expenses';
 
-class DeleteExpenses {
+class DeleteExpensesService {
   static async execute( expensesArray : Array<number> ){
     const expensesRepository = getCustomRepository(ExpensesRepositories);
 
@@ -18,4 +18,4 @@ class DeleteExpenses {
   }
 }
 
-export { DeleteExpenses }
+export { DeleteExpensesService }
