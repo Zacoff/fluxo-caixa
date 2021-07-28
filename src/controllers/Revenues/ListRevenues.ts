@@ -4,10 +4,13 @@ import { ListRevenuesService } from "../../services/Revenues/ListRevenues";
 
 class ListRevenuesController {
     static async handle(req: Request, res: Response){
-        
-        const revenues = await ListRevenuesService.execute();
+      const { userId } = req.body;
+      
+      if (!userId) throw new Error(`Invalid Id`);
 
-        return res.json(revenues);
+      const revenues = await ListRevenuesService.execute(userId);
+
+      return res.json(revenues);
 
     }
 }

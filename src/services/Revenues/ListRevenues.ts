@@ -3,12 +3,14 @@ import { RevenuesRepositories } from '../../repository/Revenues';
 
 
 class ListRevenuesService{
-    static async execute() {
-        const revenuesRepositories = getCustomRepository(RevenuesRepositories);
+    static async execute(userId : string) {
+      const revenuesRepository = getCustomRepository(RevenuesRepositories);
 
-        const revenues = await revenuesRepositories.find();
+      const revenuesUser = await revenuesRepository.find({ where: { userId: userId } })
 
-        return revenues;
+      if (revenuesUser.length === 0) throw new Error(`Revenues empty`);
+
+      return revenuesUser;
     }
 }
 

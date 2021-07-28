@@ -3,13 +3,13 @@ import { DeleteExpenseService } from '../../services/Expenses/DeleteExpense';
 
 class DeleteExpenseController {
   static async handle(req: Request, res: Response){
-    const { id , description , value } = req.body;
+    const { userId , description , value } = req.body;
 
-    if ( id || !description || !value ) return res.status(404).json({message: 'Campo vazio'});
+    if ( !userId || !description || !value ) return res.status(404).json({message: 'Campo vazio'});
 
-    await DeleteExpenseService.execute(req.body);
+    await DeleteExpenseService.execute({ userId , description , value });
 
-    return res.status(200).json({id , description , value})
+    return res.status(200).json({ description , value})
   } 
 }
 

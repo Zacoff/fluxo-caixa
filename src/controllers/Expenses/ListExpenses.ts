@@ -4,10 +4,13 @@ import { ListExpensesService } from "../../services/Expenses/ListExpenses";
 
 class ListExpensesController {
     static async handle(req: Request, res: Response){
-        
-        const revenues = await ListExpensesService.execute();
+      const { userId } = req.body;
 
-        return res.json(revenues);
+      if (!userId) throw new Error(`Invalid Id`);
+
+      const revenues = await ListExpensesService.execute(userId);
+
+      return res.json(revenues);
 
     }
 }
