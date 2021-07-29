@@ -8,7 +8,7 @@ class CreateRevenuesController {
 
     const revenue = await CreateRevenueService.execute({userId , description, value , createdAt});
 
-    return res.json(revenue);
+    return res.status(201).json(revenue);
   }
 }
 
