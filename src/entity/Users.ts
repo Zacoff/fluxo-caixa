@@ -1,5 +1,5 @@
-import {Entity, PrimaryColumn, Column, CreateDateColumn} from "typeorm";
-import { v4 as uuidv4 } from 'uuid';
+import { Entity, PrimaryColumn, Column, CreateDateColumn } from 'typeorm'
+import { v4 as uuidv4 } from 'uuid'
 
 @Entity('users')
 export class Users {
@@ -18,7 +18,7 @@ export class Users {
     @CreateDateColumn()
     createdAt!: string;
 
-    constructor(){
-      if(!this.id) this.id = uuidv4().toString();
+    constructor () {
+      if (!this.id) this.id = uuidv4().toString()
     }
 }

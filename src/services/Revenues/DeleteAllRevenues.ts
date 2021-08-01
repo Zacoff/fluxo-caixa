@@ -1,21 +1,21 @@
-import { getCustomRepository } from 'typeorm';
-import { RevenuesRepositories } from '../../repository/Revenues';
+import { getCustomRepository } from 'typeorm'
+import { RevenuesRepositories } from '../../repository/Revenues'
 
 class DeleteAllRevenuesService {
-  static async execute( userId : string){
-    const revenuesRepository = getCustomRepository(RevenuesRepositories);
+  static async execute (userId : string) {
+    const revenuesRepository = getCustomRepository(RevenuesRepositories)
 
     const revenuesUser = await revenuesRepository.find({ where: { userId: userId } })
 
-    if (revenuesUser.length === 0) throw new Error(`Revenues not found`); 
+    if (revenuesUser.length === 0) throw new Error('Revenues not found')
 
-    const revenuesToDelete : Array<string> = [];
+    const revenuesToDelete : Array<string> = []
 
-    revenuesUser.map(item => revenuesToDelete.push(item.id));
+    revenuesUser.map(item => revenuesToDelete.push(item.id))
 
-    await revenuesRepository.delete(revenuesToDelete);
-    
-    return revenuesUser;
+    await revenuesRepository.delete(revenuesToDelete)
+
+    return revenuesUser
   }
 }
 

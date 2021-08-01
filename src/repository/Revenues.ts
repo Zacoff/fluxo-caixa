@@ -1,8 +1,8 @@
-import { EntityRepository, Repository } from "typeorm";
-import { Revenues } from "../entity/Revenues";
+import { EntityRepository, Repository } from 'typeorm'
+import { Revenues } from '../entity/Revenues'
 
 @EntityRepository(Revenues)
 
-class RevenuesRepositories extends Repository<Revenues>{}
+class RevenuesRepositories extends Repository<Revenues> {}
 
-export { RevenuesRepositories };
+export { RevenuesRepositories }

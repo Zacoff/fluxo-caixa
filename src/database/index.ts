@@ -1,3 +1,7 @@
-import { createConnection } from "typeorm";
+import { createConnection } from 'typeorm'
+import { createClient } from 'redis'
 
-createConnection();
+const clientRedis = createClient({ prefix: 'blocklist' })
+export { clientRedis }
+
+createConnection()

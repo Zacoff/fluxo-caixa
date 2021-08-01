@@ -1,17 +1,16 @@
-import { getCustomRepository } from "typeorm";
-import { ExpensesRepositories } from '../../repository/Expenses';
+import { getCustomRepository } from 'typeorm'
+import { ExpensesRepositories } from '../../repository/Expenses'
 
+class ListExpensesService {
+  static async execute (userId : string) {
+    const expensesRepository = getCustomRepository(ExpensesRepositories)
 
-class ListExpensesService{
-    static async execute(userId : string) {
-        const expensesRepository = getCustomRepository(ExpensesRepositories);
+    const expensesUsers = await expensesRepository.find({ where: { userId: userId } })
 
-        const expensesUsers = await expensesRepository.find({ where: { userId: userId } });
+    if (expensesUsers.length === 0) throw new Error('Expenses empty')
 
-        if (expensesUsers.length === 0) throw new Error(`Expenses empty`);
-
-        return expensesUsers;
-    }
+    return expensesUsers
+  }
 }
 
 export { ListExpensesService }

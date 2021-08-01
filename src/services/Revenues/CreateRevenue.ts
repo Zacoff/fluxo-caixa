@@ -1,5 +1,5 @@
-import { getCustomRepository } from 'typeorm';
-import { RevenuesRepositories } from '../../repository/Revenues';
+import { getCustomRepository } from 'typeorm'
+import { RevenuesRepositories } from '../../repository/Revenues'
 
 interface IRevenues {
   userId: string;
@@ -9,15 +9,15 @@ interface IRevenues {
 }
 
 class CreateRevenueService {
-  static async execute({ userId , description , value , createdAt} : IRevenues){
-    const revenuesRepository = getCustomRepository(RevenuesRepositories);
+  static async execute ({ userId, description, value, createdAt } : IRevenues) {
+    const revenuesRepository = getCustomRepository(RevenuesRepositories)
 
-    const revenueCreate = revenuesRepository.create({userId, description, value , createdAt});
+    const revenueCreate = revenuesRepository.create({ userId, description, value, createdAt })
 
-    await revenuesRepository.save(revenueCreate);
+    await revenuesRepository.save(revenueCreate)
 
-    return revenueCreate;
-  } 
+    return revenueCreate
+  }
 }
 
 export { CreateRevenueService }

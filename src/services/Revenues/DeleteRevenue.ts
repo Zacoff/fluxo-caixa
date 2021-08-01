@@ -1,5 +1,5 @@
-import { getCustomRepository } from 'typeorm';
-import { RevenuesRepositories } from '../../repository/Revenues';
+import { getCustomRepository } from 'typeorm'
+import { RevenuesRepositories } from '../../repository/Revenues'
 
 interface IDeleteRevenue {
   userId: string;
@@ -8,18 +8,18 @@ interface IDeleteRevenue {
 }
 
 class DeleteRevenueService {
-  static async execute({userId , description, value} : IDeleteRevenue){
-    const revenueRepository = getCustomRepository(RevenuesRepositories);
+  static async execute ({ userId, description, value } : IDeleteRevenue) {
+    const revenueRepository = getCustomRepository(RevenuesRepositories)
 
-    const revenue = await revenueRepository.findOne({where: {userId , description, value}});
+    const revenue = await revenueRepository.findOne({ where: { userId, description, value } })
 
-    if(!revenue) throw new Error(`Revenue not found`);
+    if (!revenue) throw new Error('Revenue not found')
 
-    const idrevenue = revenue.id;
+    const idrevenue = revenue.id
 
-    await revenueRepository.delete(idrevenue);
-    
-    return revenue;
+    await revenueRepository.delete(idrevenue)
+
+    return revenue
   }
 }
 
