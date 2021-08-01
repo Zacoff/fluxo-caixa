@@ -1,25 +1,14 @@
-import { sign } from 'jsonwebtoken'
-import { getCustomRepository } from 'typeorm'
-import { UsersRepositories } from '../../repository/Users'
-import { hash } from 'bcrypt'
-
+import { randomBytes } from 'crypto'
+import { SetAllowService } from '../Redis/allowlist/AllowSet'
+import moment from 'moment'
 class CreateTokenRefreshService {
-  static async execute (userId : string) {
-    const userRepository = getCustomRepository(UsersRepositories)
+  static async execute () {
+    const refreshToken = randomBytes(24).toString('hex')
+    const exp = moment().add(5, 'd').unix()
 
-    const user = await userRepository.findOne({ where: { id: userId } })
+    await SetAllowService.execute({ chave: refreshToken, value: '', exp })
 
-    const token = sign(
-      { user: user.email },
-      '347c23ec4b1fa8480bf525753168f4a82466af8d',
-      {
-        subject: user.id,
-        expiresIn: '5d'
-      })
-
-    const tokenHash = hash(token, 8)
-
-    return { token, tokenHash }
+    return refreshToken
   }
 }
 

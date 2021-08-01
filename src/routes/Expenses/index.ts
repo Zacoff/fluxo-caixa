@@ -4,13 +4,14 @@ import { DeleteExpenseController } from '../../controllers/Expenses/DeleteExpens
 import { DeleteAllExpensesController } from '../../controllers/Expenses/DeleteAllExpenses'
 import { ListExpensesController } from '../../controllers/Expenses/ListExpenses'
 import { ensureAuthenticate } from '../../middlewares/ensureAuthenticate'
+import { ensureBlocklist } from '../../middlewares/ensureTokenLogout'
 
 const router = Router()
 
 router
-  .get('/list/expenses', ensureAuthenticate.handle, ListExpensesController.handle)
-  .post('/create/expenses', ensureAuthenticate.handle, CreateExpensesController.handle)
-  .delete('/delete/expense', ensureAuthenticate.handle, DeleteExpenseController.handle)
-  .delete('/delete/allExpenses', ensureAuthenticate.handle, DeleteAllExpensesController.handle)
+  .get('/list/expenses', [ensureAuthenticate.handle, ensureBlocklist.handle], ListExpensesController.handle)
+  .post('/create/expenses', [ensureAuthenticate.handle, ensureBlocklist.handle], CreateExpensesController.handle)
+  .delete('/delete/expense', [ensureAuthenticate.handle, ensureBlocklist.handle], DeleteExpenseController.handle)
+  .delete('/delete/allExpenses', [ensureAuthenticate.handle, ensureBlocklist.handle], DeleteAllExpensesController.handle)
 
 export { router }

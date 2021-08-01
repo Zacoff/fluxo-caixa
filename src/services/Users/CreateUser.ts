@@ -7,10 +7,11 @@ interface IUser{
   name: string;
   email: string;
   password: string;
+  admin: boolean;
 }
 
 class CreateUserService {
-  static async execute ({ name, email, password } : IUser) {
+  static async execute ({ name, email, password, admin = false } : IUser) {
     const userRepository = getCustomRepository(UsersRepositories)
 
     const userAlreadyExists = await userRepository.findOne({ where: { email } })
@@ -19,7 +20,7 @@ class CreateUserService {
 
     const passwordHash = await hash(password, 8)
 
-    const userCreate = userRepository.create({ name, email, password: passwordHash })
+    const userCreate = userRepository.create({ name, email, password: passwordHash, admin })
 
     await userRepository.save(userCreate)
 

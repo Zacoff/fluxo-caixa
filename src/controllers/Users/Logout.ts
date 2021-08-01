@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
-import { SetRedisService } from '../../services/Redis/Set'
-
+import { SetBlockService } from '../../services/Redis/blocklist/BlockSet'
 class LogoutController {
   static async handle (req: Request, res: Response) {
     const { token } = req
-    const users = await SetRedisService.execute(token)
 
-    return res.status(200).json(users)
+    await SetBlockService.execute({ chave: token })
+
+    return res.status(200).end()
   }
 }
 

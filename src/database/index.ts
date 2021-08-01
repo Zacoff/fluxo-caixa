@@ -1,7 +1,8 @@
 import { createConnection } from 'typeorm'
 import { createClient } from 'redis'
 
-const clientRedis = createClient({ prefix: 'blocklist' })
-export { clientRedis }
+const blocklist = createClient({ prefix: 'blocklist-refresh-token:' })
+const allowList = createClient({ prefix: 'allowList-refresh-token:' })
+export { blocklist, allowList }
 
 createConnection()
