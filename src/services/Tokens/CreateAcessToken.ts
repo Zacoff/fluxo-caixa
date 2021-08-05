@@ -16,7 +16,7 @@ class CreateAccessToken {
 
     const token = sign(
       { user: user.email },
-      '347c23ec4b1fa8480bf525753168f4a82466af8d',
+      process.env.SECRET_KEY,
       {
         subject: user.id,
         expiresIn: '5d'
