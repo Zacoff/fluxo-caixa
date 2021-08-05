@@ -24,11 +24,11 @@ class TokenRefresh {
 
     await DeleteAllowService.execute(refreshToken)
 
-    const accessToken = await CreateAccessToken.execute({ email: user })
+    const newAccessToken = await CreateAccessToken.execute({ email: user })
 
     const newRefreshToken = await CreateTokenRefreshService.execute()
 
-    res.status(200).set('Authorization', accessToken).json({ refreshToken: newRefreshToken }).end()
+    return res.status(200).json({ accessToken: newAccessToken, refreshToken: newRefreshToken })
   }
 }
 

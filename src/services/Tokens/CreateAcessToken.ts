@@ -19,7 +19,7 @@ class CreateAccessToken {
       '347c23ec4b1fa8480bf525753168f4a82466af8d',
       {
         subject: user.id,
-        expiresIn: '60s'
+        expiresIn: '5d'
       })
 
     return token

@@ -14,6 +14,8 @@ class LoginUserService {
 
     const user = await userRepository.findOne({ where: { email } })
 
+    if (!user) throw new Error('Invalid Password or Email')
+
     const passwordMatch = await compare(password, user.password)
 
     if (!passwordMatch) throw new Error('Invalid Password or Email')

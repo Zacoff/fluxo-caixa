@@ -8,9 +8,14 @@ import './database'
 
 const app = express()
 
-app.options('*', cors())
+app.use(cors())
 
 app.use(express.json())
+
+app.use((req, res, next) => {
+  res.set('X-Powered-By', 'PHP/7.1.7')
+  next()
+})
 
 router(app)
 

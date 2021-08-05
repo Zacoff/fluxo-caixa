@@ -1,3 +1,4 @@
+import { classToPlain } from 'class-transformer'
 import { Request, Response } from 'express'
 import { CreateUserService } from '../../services/Users/CreateUser'
 class CreateUserController {
@@ -6,7 +7,9 @@ class CreateUserController {
 
     const user = await CreateUserService.execute({ name, email, password, admin })
 
-    res.status(201).json(user)
+    const userSend = classToPlain(user)
+
+    res.status(201).json(userSend)
   }
 }
 

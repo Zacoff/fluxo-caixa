@@ -1,14 +1,14 @@
 import { getCustomRepository } from 'typeorm'
 import { UsersRepositories } from '../../repository/Users'
 
-class ListUsersService {
-  static async execute () {
+class ListOneUserService {
+  static async execute (userId : string) {
     const usersRepositories = getCustomRepository(UsersRepositories)
 
-    const users = await usersRepositories.find()
+    const users = await usersRepositories.find({ where: { id: userId } })
 
     return users
   }
 }
 
-export { ListUsersService }
+export { ListOneUserService }

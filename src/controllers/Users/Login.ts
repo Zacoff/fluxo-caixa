@@ -10,7 +10,7 @@ class LoginUserController {
 
     const refreshToken = await CreateTokenRefreshService.execute()
 
-    return res.status(200).set('Authorization', accessToken).json(refreshToken).end()
+    return res.status(200).json({ accessToken: accessToken, refreshToken: refreshToken })
   }
 }
 
